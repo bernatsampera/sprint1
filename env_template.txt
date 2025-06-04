@@ -1,0 +1,10 @@
+# API Keys for Prompt Engineering
+# Copy these to your .env file or set as environment variables
+
+OPENAI_API_KEY=your_openai_api_key_here
+GEMINI_API_KEY=your_gemini_api_key_here
+ANTHROPIC_API_KEY=your_anthropic_api_key_here
+
+# Optional: Set default model names
+OPENAI_MODEL=gpt-3.5-turbo
+GEMINI_MODEL=gemini-pro 
