@@ -187,8 +187,7 @@ class UIComponents:
         st.markdown(
             """
             <div style='text-align: center; color: #666; font-size: 0.8em;'>
-            🎯 Interview Prep Assistant | Built with Streamlit & AI<br>
-            Practice makes perfect - Keep refining your interview skills!
+            Created by Bernat Sampera for Turing College Sprint 1
             </div>
             """, 
             unsafe_allow_html=True
