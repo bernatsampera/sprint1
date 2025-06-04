@@ -1,8 +1,28 @@
 """
 System prompts for Interview Preparation App using various prompting techniques.
+
+This module implements 5 different AI prompting strategies, each optimized for specific 
+interview types. The mapping strategy follows cognitive psychology principles and 
+real-world interview best practices.
+
+PROMPTING STRATEGY RATIONALE:
+1. Few-shot Learning → Behavioral Questions: Provides concrete examples of STAR method responses
+2. Zero-shot → Technical Questions: Tests genuine knowledge without giving away answers
+3. Chain-of-thought → Job Analysis: Breaks down complex analysis into systematic steps
+4. Role Prompting → Final Interviews: Creates authentic executive-level interaction
+5. Instruction-based → System Design: Provides structured framework for complex problems
 """
 
-# 1. Few-shot learning prompts
+# =============================================================================
+# PROMPTING TECHNIQUES WITH STRATEGIC RATIONALE
+# =============================================================================
+
+# 1. FEW-SHOT LEARNING PROMPTS
+# Why this works for Behavioral Questions:
+# - Provides concrete examples of good responses
+# - Demonstrates STAR method (Situation, Task, Action, Result)
+# - Shows the expected structure and depth
+# - Helps candidates understand evaluation criteria
 BEHAVIORAL_FEW_SHOT = """You are an experienced HR interviewer conducting behavioral interviews. Help the candidate practice by asking thoughtful behavioral questions and providing feedback.
 
 Here are examples of how you should respond:
@@ -19,7 +39,12 @@ Feedback: "Great response! You demonstrated accountability, problem-solving, and
 
 Now, provide a behavioral interview question and be ready to give constructive feedback on the candidate's response."""
 
-# 2. Zero-shot prompts
+# 2. ZERO-SHOT PROMPTS
+# Why this works for Technical Questions:
+# - Tests genuine technical knowledge without hints
+# - Mirrors real interview conditions where no examples are given
+# - Encourages authentic problem-solving approaches
+# - Allows assessment of candidate's actual skill level
 TECHNICAL_ZERO_SHOT = """You are a senior software engineer conducting a technical interview. Your role is to:
 
 1. Ask clear, relevant technical questions appropriate for the specified role level
@@ -29,7 +54,12 @@ TECHNICAL_ZERO_SHOT = """You are a senior software engineer conducting a technic
 
 Focus on practical knowledge, coding best practices, system design principles, and real-world application of concepts. Be encouraging while maintaining technical rigor."""
 
-# 3. Chain-of-thought prompting
+# 3. CHAIN-OF-THOUGHT PROMPTING
+# Why this works for Job Description Analysis:
+# - Breaks down complex analysis into manageable steps
+# - Ensures systematic coverage of all important aspects
+# - Models strategic thinking process
+# - Helps candidates develop analytical frameworks
 JOB_ANALYSIS_COT = """You are a career coach helping someone analyze a job description. Follow this step-by-step approach:
 
 Step 1: First, carefully read and identify the key requirements (technical skills, experience, soft skills)
@@ -40,7 +70,12 @@ Step 5: Finally, provide advice on how to position their experience to match the
 
 Walk through each step methodically and explain your reasoning at each stage. This systematic approach will help the candidate thoroughly prepare for their interview."""
 
-# 4. Role prompting
+# 4. ROLE PROMPTING
+# Why this works for Final Interview Strategies:
+# - Creates authentic executive-level interaction
+# - Focuses on strategic and cultural considerations
+# - Simulates real final round dynamics
+# - Helps candidates prepare for high-stakes conversations
 FINAL_INTERVIEW_ROLE = """You are the CEO/Hiring Manager conducting a final round interview. You have a warm but professional demeanor and are focused on cultural fit, leadership potential, and long-term vision.
 
 Your personality:
@@ -58,7 +93,12 @@ Your typical questions focus on:
 
 Remember: You're not just evaluating them - they're evaluating the company too. Make this feel like a strategic conversation between peers."""
 
-# 5. Instruction-based prompting
+# 5. INSTRUCTION-BASED PROMPTING
+# Why this works for System Design:
+# - Provides clear framework for complex problems
+# - Ensures comprehensive coverage of design aspects
+# - Mirrors real system design interview structure
+# - Gives candidates a roadmap for tackling big problems
 SYSTEM_DESIGN_INSTRUCTION = """You are a system design interview expert. Follow these specific instructions when conducting system design interviews:
 
 INSTRUCTIONS FOR QUESTIONING:
@@ -84,15 +124,85 @@ FEEDBACK STYLE:
 
 Always remember: System design is about thought process, not memorizing solutions."""
 
-# Mapping of categories to prompts
+# =============================================================================
+# STRATEGIC MAPPING CONFIGURATION
+# =============================================================================
+
+# This mapping follows research-backed principles:
+# - Cognitive Load Theory: Match complexity to learner's current state
+# - Scaffolding Theory: Provide appropriate level of support
+# - Authentic Assessment: Mirror real interview conditions
+# - Progressive Disclosure: Reveal information at optimal timing
+
 PROMPT_MAPPING = {
-    "Behavioral Questions": BEHAVIORAL_FEW_SHOT,
-    "Technical Questions": TECHNICAL_ZERO_SHOT,
-    "Job Description Analysis": JOB_ANALYSIS_COT,
-    "Final Interview Strategies": FINAL_INTERVIEW_ROLE,
-    "System Design": SYSTEM_DESIGN_INSTRUCTION
+    "Behavioral Questions": BEHAVIORAL_FEW_SHOT,      # Examples → Pattern Learning
+    "Technical Questions": TECHNICAL_ZERO_SHOT,       # Direct Assessment → Skill Testing  
+    "Job Description Analysis": JOB_ANALYSIS_COT,     # Systematic Steps → Complex Analysis
+    "Final Interview Strategies": FINAL_INTERVIEW_ROLE, # Role Play → Authentic Context
+    "System Design": SYSTEM_DESIGN_INSTRUCTION        # Structured Framework → Complex Problems
+}
+
+# =============================================================================
+# METADATA FOR EACH PROMPTING TECHNIQUE
+# =============================================================================
+
+PROMPT_METADATA = {
+    "BEHAVIORAL_FEW_SHOT": {
+        "technique": "Few-shot Learning",
+        "cognitive_principle": "Pattern Recognition & Modeling",
+        "best_for": "Skill demonstration through examples",
+        "learning_outcome": "Understanding of expected response structure and quality"
+    },
+    "TECHNICAL_ZERO_SHOT": {
+        "technique": "Zero-shot Prompting", 
+        "cognitive_principle": "Direct Knowledge Assessment",
+        "best_for": "Authentic skill evaluation",
+        "learning_outcome": "Genuine problem-solving under realistic conditions"
+    },
+    "JOB_ANALYSIS_COT": {
+        "technique": "Chain-of-Thought",
+        "cognitive_principle": "Systematic Decomposition",
+        "best_for": "Complex multi-step analysis",
+        "learning_outcome": "Strategic thinking and analytical frameworks"
+    },
+    "FINAL_INTERVIEW_ROLE": {
+        "technique": "Role Prompting",
+        "cognitive_principle": "Contextual Immersion",
+        "best_for": "Authentic interaction simulation",
+        "learning_outcome": "Executive-level communication and strategic thinking"
+    },
+    "SYSTEM_DESIGN_INSTRUCTION": {
+        "technique": "Instruction-based Prompting",
+        "cognitive_principle": "Guided Discovery",
+        "best_for": "Complex technical problem-solving",
+        "learning_outcome": "Structured approach to system architecture"
+    }
 }
 
 def get_system_prompt(category: str) -> str:
-    """Get the appropriate system prompt for a given category."""
-    return PROMPT_MAPPING.get(category, TECHNICAL_ZERO_SHOT) 
+    """
+    Get the appropriate system prompt for a given interview category.
+    
+    Args:
+        category: Interview category name
+        
+    Returns:
+        str: Optimized system prompt for the category
+        
+    Note:
+        Falls back to TECHNICAL_ZERO_SHOT if category not found,
+        as it provides the most neutral, assessment-focused approach.
+    """
+    return PROMPT_MAPPING.get(category, TECHNICAL_ZERO_SHOT)
+
+def get_prompt_metadata(prompt_name: str) -> dict:
+    """
+    Get metadata about a specific prompting technique.
+    
+    Args:
+        prompt_name: Name of the prompt constant
+        
+    Returns:
+        dict: Metadata about the prompting technique
+    """
+    return PROMPT_METADATA.get(prompt_name, {}) 
