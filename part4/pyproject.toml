@@ -1,0 +1,16 @@
+[project]
+name = "interview-prep"
+version = "0.1.0"
+description = "Streamlit-based Interview Preparation Web App"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "streamlit>=1.28.0",
+    "python-dotenv>=1.0.0",
+    "httpx>=0.25.0",
+    "openai>=1.0.0",
+    "typing-extensions>=4.8.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
