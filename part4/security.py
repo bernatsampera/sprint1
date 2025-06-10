@@ -25,7 +25,7 @@ SENSITIVE_TERMS = [
 
 
 def validate_input_length(text: str, max_length: int = MAX_PROMPT_LENGTH) -> Tuple[bool, str]:
-    """
+    """api_key 
     Validate that input text doesn't exceed maximum length.
     
     Args:
@@ -161,18 +161,3 @@ def log_security_event(event_type: str, details: str):
     # In production, use proper logging
     print(f"[SECURITY] {event_type}: {details}")
 
-
-def rate_limit_check(user_session_id: str) -> bool:
-    """
-    Basic rate limiting check.
-    In a real app, this would use Redis or similar.
-    
-    Args:
-        user_session_id: Session identifier
-        
-    Returns:
-        True if request is allowed, False if rate limited
-    """
-    # For this demo, we'll always return True
-    # In production, implement proper rate limiting
-    return True 
